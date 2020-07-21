@@ -198,14 +198,28 @@ public class Person {
            }
        }
     }
-    public static void main(String args[]){
+
+     public void searchCityorState(){
+
+        System.out.println("Enter the city and state");
+        String city=sc.next();
+        String state=sc.next();
+        for(int iteration=0;iteration<list.size();iteration++) {
+            addressbook = (Person) list.get(iteration);
+            if (city.equals(addressbook.getCity()) || state.equals(addressbook.getState())) {
+                System.out.println("Matching record found"+addressbook.getFirstName());
+            }
+        }
+     }
+
+     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         String firstName = null,lastName=null,address=null,state=null,city=null,phone=null;
         int zip=0;
         System.out.println("Welcome to Address Book Program");
         Person select=new Person(firstName,lastName,address,state,city,zip,phone);
         while(true){
-            System.out.println("Enter the choice 1.Add 2.Edit 3.Delete 4.Sort 5.SortByCity/state/zip 6.ViewByCityandstate 7.Quit");
+            System.out.println("Enter the choice 1.Add 2.Edit 3.Delete 4.Sort 5.SortByCity/state/zip 6.ViewByCityandstate 7.SearchCityorState 8.Quit");
             int choice1=sc.nextInt();
             switch(choice1) {
                 case 1:
@@ -218,15 +232,18 @@ public class Person {
                     select.deleteEntry();
                     break;
                 case 4:
-                     select.sortByNames();
+                    select.sortByNames();
                      break;
                 case 5:
-                        select.sortByCityStateZip();
+                    select.sortByCityStateZip();
                         break;
                 case 6:
-                        select.viewByCityState();
+                    select.viewByCityState();
                         break;
                 case 7:
+                    select.searchCityorState();
+                        break;
+                case 8:
                     System.out.println("Thankyou for using Address book");
                     break;
                 default:
