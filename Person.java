@@ -169,10 +169,24 @@ public class Person {
         }
     }
     public void sortByNames(){
-        //Collections.sort(list, Comparator.comparing(Person::getFirstName)) ;
-        //System.out.println(list.get());
         list.stream().sorted(Comparator.comparing(Person::getFirstName)).forEach(p -> System.out.printf("%s\t%s\t %s\t%s\t%s\t%s\t%s\t%n", p.getFirstName(),p.getLastName(),p.getAddress(),p.getState(),p.getCity(),p.getZip(),p.getPhone()));
     }
+    public void sortByCityStateZip(){
+        System.out.println("Enter the choice to sort 1.SortbyCity 2.SortbyState 3.SortbyZip");
+        int choice=sc.nextInt();
+        switch(choice){
+            case 1: list.stream().sorted(Comparator.comparing(Person::getCity)).forEach(p -> System.out.printf("%s\t%s\t %s\t%s\t%s\t%s\t%s\t%n", p.getCity(),p.getFirstName(),p.getLastName(),p.getAddress(),p.getState(),p.getZip(),p.getPhone()));
+                    break;
+            case 2: list.stream().sorted(Comparator.comparing(Person::getState)).forEach(p -> System.out.printf("%s\t%s\t %s\t%s\t%s\t%s\t%s\t%n", p.getState(),p.getFirstName(),p.getLastName(),p.getAddress(),p.getCity(),p.getZip(),p.getPhone()));
+                    break;
+            case 3: list.stream().sorted(Comparator.comparing(Person::getZip)).forEach(p -> System.out.printf("%s\t%s\t %s\t%s\t%s\t%s\t%s\t%n", p.getZip(),p.getFirstName(),p.getLastName(),p.getAddress(),p.getCity(),p.getState(),p.getPhone()));
+                    break;
+            default: System.out.println("Not in list");
+                     break;
+        }
+
+    }
+
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         String firstName = null,lastName=null,address=null,state=null,city=null,phone=null;
