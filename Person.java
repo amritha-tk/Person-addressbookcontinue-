@@ -1,7 +1,6 @@
 package com.Person;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Person {
     String firstName,lastName,address,state,city,phone;
@@ -169,6 +168,11 @@ public class Person {
             }
         }
     }
+    public void sortByNames(){
+        //Collections.sort(list, Comparator.comparing(Person::getFirstName)) ;
+        //System.out.println(list.get());
+        list.stream().sorted(Comparator.comparing(Person::getFirstName)).forEach(p -> System.out.printf("%s\t%s\t %s\t%s\t%s\t%s\t%s\t%n", p.getFirstName(),p.getLastName(),p.getAddress(),p.getState(),p.getCity(),p.getZip(),p.getPhone()));
+    }
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         String firstName = null,lastName=null,address=null,state=null,city=null,phone=null;
@@ -176,7 +180,7 @@ public class Person {
         System.out.println("Welcome to Address Book Program");
         Person select=new Person(firstName,lastName,address,state,city,zip,phone);
         while(true){
-            System.out.println("Enter the choice 1.Add 2.Edit 3.Delete 4.Quit");
+            System.out.println("Enter the choice 1.Add 2.Edit 3.Delete 4.Sort 5.Quit");
             int choice1=sc.nextInt();
             switch(choice1) {
                 case 1:
@@ -189,6 +193,9 @@ public class Person {
                     select.deleteEntry();
                     break;
                 case 4:
+                     select.sortByNames();
+                     break;
+                case 5:
                     System.out.println("Thankyou for using Address book");
                     break;
                 default:
